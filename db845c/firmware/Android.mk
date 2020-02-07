@@ -94,10 +94,16 @@ firmware_files +=	\
 firmware_files +=	\
     devcfg.mbn
 
+# wifi/modem/mba
+sdm845_firmware_files +=	\
+    mba.mbn		\
+    modem.mbn
+
 # License
 firmware_files +=	\
     LICENSE.qcom.txt
 
 $(foreach f, $(firmware_files), $(call add-qcom-firmware, $(f), $(TARGET_OUT_VENDOR)/firmware/))
+$(foreach f, $(sdm845_firmware_files), $(call add-qcom-firmware, $(f), $(TARGET_OUT_VENDOR)/firmware/qcom/sdm845/))
 
 include $(call all-makefiles-under,$(LOCAL_PATH))

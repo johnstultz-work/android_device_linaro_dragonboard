@@ -47,6 +47,11 @@ PRODUCT_PACKAGES +=	\
 PRODUCT_PACKAGES +=	\
     devcfg.mbn
 
+
+PRODUCT_PACKAGES +=	\
+    mba.mbn		\
+    modem.mbn
+
 # Venus
 # Video encoder/decoder accelerator
 PRODUCT_PACKAGES +=	\
