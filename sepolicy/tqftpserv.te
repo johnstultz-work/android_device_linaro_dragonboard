@@ -1,0 +1,6 @@
+type tqftpserv, domain;
+
+type tqftpserv_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(tqftpserv);
+
+allow tqftpserv self:qipcrtr_socket { create getattr setopt write };

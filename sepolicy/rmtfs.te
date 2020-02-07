@@ -1,0 +1,9 @@
+type rmtfs, domain;
+type rmtfs_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(rmtfs)
+
+allow rmtfs sysfs_rmtfs:dir search;
+allow rmtfs sysfs_rmtfs:file r_file_perms;
+allow rmtfs self:capability net_admin;
+allow rmtfs self:qipcrtr_socket { bind create getattr setopt write };
