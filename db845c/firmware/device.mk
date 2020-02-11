@@ -104,6 +104,8 @@ PRODUCT_PACKAGES +=	\
     bdwlan.b70		\
     bdwlan.bin		\
     bdwlan.txt		\
+    firmware-5.bin	\
+    notice.txt_wlanmdsp	\
     wlanmdsp.mbn
 
 # License

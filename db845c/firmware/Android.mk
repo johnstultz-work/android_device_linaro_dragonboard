@@ -88,6 +88,8 @@ firmware_files +=	\
     bdwlan.b70		\
     bdwlan.bin		\
     bdwlan.txt		\
+    firmware-5.bin	\
+    notice.txt_wlandsp	\
     wlanmdsp.mbn
 
 # I2C/SPI fix
