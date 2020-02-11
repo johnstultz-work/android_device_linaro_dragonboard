@@ -16,7 +16,7 @@ firmware_files :=	\
     a630_zap.mdt
 
 # DSP (adsp+cdsp)
-firmware_files +=	\
+sdm845_firmware_files +=	\
     adsp.b00		\
     adsp.b01		\
     adsp.b02		\
@@ -47,7 +47,7 @@ firmware_files +=	\
     K2026090.mem
 
 # Wlan
-firmware_files +=	\
+sdm845_firmware_files +=	\
     bdwlan.102		\
     bdwlan.104		\
     bdwlan.105		\
