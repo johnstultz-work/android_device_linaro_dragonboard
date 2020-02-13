@@ -211,6 +211,15 @@ static int rmtfs_mem_open_rfsa(struct rmtfs_mem *rmem, int client_id)
 
 	errno = 0;
 
+	snprintf(path, sizeof(path), "/dev/qcom_rmtfs_mem%d", client_id);
+
+	rmem->fd = open(path, O_RDWR);
+	if (rmem->fd < 0) {
+		saved_errno = errno;
+		fprintf(stderr, "failed to open %s: %s\n", path, strerror(errno));
+		return -saved_errno;
+	}
+
 	snprintf(path, sizeof(path), "/sys/class/rmtfs/qcom_rmtfs_mem%d/phys_addr", client_id);
 	fd = open(path, O_RDONLY);
 	if (fd < 0) {
@@ -250,61 +259,8 @@ err_close_fd:
 
 static int rmtfs_mem_open_uio(struct rmtfs_mem *rmem, int client_id)
 {
-	int saved_errno;
-	int fd;
-	char path[PATH_MAX];
-	char val[PAGE_SIZE];
-	char *endptr;
-
-	errno = 0;
-
-	snprintf(path, sizeof(path), "/sys/class/rmtfs/qcom_rmtfs_uio%d/maps/map0/addr", client_id);
-
-	fd = open(path, O_RDONLY);
-	if (fd < 0) {
-		saved_errno = errno;
-		fprintf(stderr, "failed to open %s: %s\n", path, strerror(errno));
-		return -saved_errno;
-	}
-
-	read(fd, val, sizeof(val));
-
-	rmem->address = strtoull(val, &endptr, 16);
-	if ((rmem->address == ULLONG_MAX && errno == ERANGE) || endptr == val) {
-		saved_errno = errno;
-		goto err_close_fd;
-	}
-	close(fd);
-
-	snprintf(path, sizeof(path), "/sys/class/rmtfs/qcom_rmtfs_mem%d/maps/map0/size", client_id);
-
-	fd = open(path, O_RDONLY);
-	if (fd < 0) {
-		saved_errno = errno;
-		fprintf(stderr, "failed to open %s: %s\n", path, strerror(errno));
-		return -saved_errno;
-	}
-
-	read(fd, val, sizeof(val));
-
-	rmem->size = strtoull(val, &endptr, 16);
-	if ((rmem->size == ULLONG_MAX && errno == ERANGE) || endptr == val) {
-		saved_errno = errno;
-		goto err_close_fd;
-	}
-
-	rmem->base = mmap(0, rmem->size, PROT_READ|PROT_WRITE, MAP_SHARED, fd, 0);
-	if (rmem->base == MAP_FAILED) {
-		saved_errno = errno;
-		fprintf(stderr, "failed to mmap: %s\n", strerror(errno));
-	}
-	close(fd);
-
-	return 0;
-
-err_close_fd:
-	close(fd);
-	return -saved_errno;
+	fprintf(stderr, "uio access is not supported on ANDROID yet\n");
+	return -EINVAL;
 }
 
 #endif

@@ -45,7 +45,7 @@
 #define READONLY_PATH	"/readonly/firmware/image/"
 #define READWRITE_PATH	"/readwrite/"
 
-#define FIRMWARE_BASE	"/lib/firmware/"
+#define FIRMWARE_BASE	"/vendor/firmware/"
 
 /**
  * translate_readonly() - open "file" residing with remoteproc firmware
@@ -64,7 +64,7 @@
 static int translate_readonly(const char *file)
 {
 	char firmware_value[PATH_MAX];
-	char firmware_attr[32];
+	char firmware_attr[PATH_MAX];
 	char path[PATH_MAX];
 	struct dirent *de;
 	int firmware_fd;
@@ -89,10 +89,11 @@ static int translate_readonly(const char *file)
 		if (!strcmp(de->d_name, ".") || !strcmp(de->d_name, ".."))
 			continue;
 
-		if (strlen(de->d_name) + sizeof("/firmware") > sizeof(firmware_attr))
+		if (strlen(de->d_name) + strlen("/firmware") > sizeof(firmware_attr))
 			continue;
 		strcpy(firmware_attr, de->d_name);
 		strcat(firmware_attr, "/firmware");
+
 
 		firmware_fd = openat(class_fd, firmware_attr, O_RDONLY);
 		if (firmware_fd < 0)
@@ -103,6 +104,7 @@ static int translate_readonly(const char *file)
 		if (n < 0) {
 			continue;
 		}
+		firmware_value[n] = 0;
 
 		if (strlen(FIRMWARE_BASE) + strlen(firmware_value) + 1 +
 		    strlen(file) + 1 > sizeof(path))
@@ -142,15 +144,15 @@ static int translate_readwrite(const char *file, int flags)
 	int ret;
 	int fd;
 
-	ret = mkdir("/tmp/tqftpserv", 0700);
+	ret = mkdir("/data/qcom/tmp/tqftpserv", 0700);
 	if (ret < 0 && errno != EEXIST) {
-		warn("failed to create /tmp/tqftpserv");
+		warn("failed to create /data/qcom/tmp/tqftpserv");
 		return -1;
 	}
 
-	base = open("/tmp/tqftpserv", O_RDONLY | O_DIRECTORY);
+	base = open("/data/qcom/tmp/tqftpserv", O_RDONLY | O_DIRECTORY);
 	if (base < 0) {
-		warn("failed top open /tmp/tqftpserv");
+		warn("failed top open /data/qcom/tmp/tqftpserv");
 		return -1;
 	}
 

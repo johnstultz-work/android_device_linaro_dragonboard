@@ -1,40 +1,40 @@
-#service qrtr-ns /vendor/bin/qrtr-ns -f
-#    class core
-#    user root
-#    group system
-#    disabled
-#    oneshot
-#
-#service pd_mapper /vendor/bin/pd-mapper
-#    class core
-#    user root
-#    group system
-#    disabled
-#    oneshot
-#
-#service tqftpserv /vendor/bin/tqftpserv
-#    class core
-#    user root
-#    group system
-#    disabled
-#    oneshot
-#
-#service rmtfs /vendor/bin/rmtfs -P -r -s
-#    class core
-#    user root
-#    group system
-#    disabled
-#    oneshot
-#
-#on early-init
-#    exec - root -- /vendor/bin/qrtr-cfg 1
-#    exec - root -- /system/bin/sleep 2
-#    start qrtr-ns
-#
-#on property:sys.boot_completed=1
-#    exec - root -- /system/bin/sleep 2
-#    start pd_mapper
-#    exec - root -- /system/bin/sleep 2
-#    start tqftpserv
-#    exec - root -- /system/bin/sleep 2
-#    start rmtfs
+service qrtr-ns /vendor/bin/qrtr-ns -f
+    class core
+    user root
+    group system
+    disabled
+    oneshot
+
+service pd_mapper /vendor/bin/pd-mapper
+    class core
+    user root
+    group system
+    disabled
+    oneshot
+
+service tqftpserv /vendor/bin/tqftpserv
+    class core
+    user root
+    group system
+    disabled
+    oneshot
+
+service rmtfs /vendor/bin/rmtfs -P -r -s
+    class core
+    user root
+    group system
+    disabled
+    oneshot
+
+on early-init
+    exec - root -- /vendor/bin/qrtr-cfg 1
+    exec - root -- /system/bin/sleep 2
+    start qrtr-ns
+
+on property:sys.boot_completed=1
+    exec - root -- /system/bin/sleep 2
+    start pd_mapper
+    exec - root -- /system/bin/sleep 2
+    start tqftpserv
+    exec - root -- /system/bin/sleep 2
+    start rmtfs

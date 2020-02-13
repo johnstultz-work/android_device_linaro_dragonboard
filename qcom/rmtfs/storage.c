@@ -1,4 +1,3 @@
-#include <sys/endian.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <errno.h>
@@ -12,7 +11,11 @@
 #define MAX_CALLERS 10
 #define STORAGE_MAX_SIZE (16 * 1024 * 1024)
 
-#define BY_PARTLABEL_PATH "/dev/block/by-name"
+#ifndef ANDROID
+#define BY_PARTLABEL_PATH "/dev/disk/by-partlabel"
+#else
+#define BY_PARTLABEL_PATH "/dev/block/platform/soc@0/1d84000.ufshc/by-name"
+#endif
 
 #define MIN(x, y) ((x) < (y) ? (x) : (y))
 
