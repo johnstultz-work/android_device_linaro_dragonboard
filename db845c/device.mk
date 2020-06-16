@@ -58,6 +58,7 @@ PRODUCT_PACKAGES += \
     qrtr-cfg \
     qrtr-lookup \
     rmtfs \
+    v4l2_decode \
     tqftpserv
 
 PRODUCT_COPY_FILES += \

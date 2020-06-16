@@ -31,6 +31,7 @@
 /system/bin/tinymix									u:object_r:tinymix_exec:s0
 
 /vendor/bin/hw/android\.hardware\.gatekeeper@1\.0-service\.software			u:object_r:hal_gatekeeper_default_exec:s0
+/vendor/bin/hw/android\.hardware\.media\.c2@1\.0-service-v4l2(.*)?			u:object_r:mediacodec_exec:s0
 /vendor/bin/pd-mapper									u:object_r:pd_mapper_exec:s0
 /vendor/bin/qrtr-cfg									u:object_r:qrtr_exec:s0
 /vendor/bin/qrtr-ns									u:object_r:qrtr_exec:s0

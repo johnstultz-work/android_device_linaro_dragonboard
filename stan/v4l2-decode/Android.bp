@@ -1,0 +1,18 @@
+cc_binary {
+    name: "v4l2_decode",
+    vendor: true,
+    srcs: [
+        "main.c",
+        "args.c",
+        "parser.c",
+        "video.c",
+        "ctrls.c",
+        "tracer.c",
+    ],
+    cflags: [
+        "-pthread",
+        "-Wall",
+        "-g",
+        "-std=gnu99",
+    ],
+}
