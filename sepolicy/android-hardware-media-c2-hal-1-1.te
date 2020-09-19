@@ -1,5 +1,0 @@
-type android-hardware-media-c2-hal-1-1, domain;
-
-type android-hardware-media-c2-hal-1-1_exec, exec_type, vendor_file_type, file_type;
-init_daemon_domain(android-hardware-media-c2-hal-1-1)
-
