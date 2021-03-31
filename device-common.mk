@@ -137,7 +137,8 @@ PRODUCT_PACKAGES += \
     libc2plugin_store \
     libv4l2_codec2_components \
     libv4l2_codec2_store \
-    libv4l2_codec2_accel
+    libv4l2_codec2_vendor_allocator
+
 
 
 PRODUCT_COPY_FILES += \
