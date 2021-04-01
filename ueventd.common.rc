@@ -11,3 +11,5 @@ subsystem usbmisc
 
 # media.codec2
 /dev/ion 0664 system system
+
+/dev/video*  0660 cameraserver  system

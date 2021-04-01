@@ -68,6 +68,27 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Use Launcher3QuickStep
 PRODUCT_PACKAGES += Launcher3QuickStep
 
+
+PRODUCT_PACKAGES += \
+    camera.device@3.4-impl \
+    camera.usb.default \
+    camera.v4l2 \
+    Camera2 \
+    android.hardware.camera.provider@2.4-impl \
+    android.hardware.camera.provider@2.4-legacy \
+    android.hardware.camera.provider@2.4-external-service \
+    android.hardware.camera.provider@2.4-service_64 \
+    android.hardware.camera.provider@2.4-service \
+    libmmjpeg_interface \
+    libmmcamera_interface
+
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.camera.concurrent.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.concurrent.xml \
+    frameworks/native/data/etc/android.hardware.camera.full.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.full.xml \
+    frameworks/native/data/etc/android.hardware.camera.raw.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.raw.xml \
+    $(LOCAL_PATH)/external_camera_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/external_camera_config.xml
+    
+
 # Enable WiFi
 PRODUCT_PACKAGES += \
     hostapd \
