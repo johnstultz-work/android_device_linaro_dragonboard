@@ -139,6 +139,8 @@ PRODUCT_PACKAGES += \
     libv4l2_codec2_store \
     libv4l2_codec2_vendor_allocator
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    debug.stagefright.c2-poolmask=0xf50000
 
 
 PRODUCT_COPY_FILES += \
