@@ -1,17 +1,17 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
 cc_library_shared {
     name: "libv4l2_codec2_vendor_allocator",
-    vendor: true,
-
+    vendor_available: true,
     defaults: [
         "libcodec2-impl-defaults",
     ],
-
     srcs: [
         "C2ArcAllocatorFactory.cpp",
     ],
     include_dirs: [
         "external/libchrome",
-        "external/v4l2_codec2/accel",
         "frameworks/av/media/codec2/core/include/",
         "frameworks/av/media/codec2/vndk/include/",
     ],
@@ -22,8 +22,6 @@ cc_library_shared {
         "libcutils",
         "libhidlbase",
         "libmojo",
-        "libvda_c2_pixelformat",
-        "libv4l2_codec2_accel",
         "libv4l2_codec2_common",
         "libc2plugin_store",
     ],
@@ -32,44 +30,5 @@ cc_library_shared {
       "-Wall",
       "-std=c++14",
       "-Wno-unused-parameter",
-    ],
-
-    export_include_dirs: [
-        "include",
-    ],
-}
-
-cc_library_shared {
-    name: "libvda_c2_pixelformat",
-    vendor: true,
-    defaults: [
-        "libcodec2-impl-defaults",
-    ],
-    srcs: [
-          "C2VDAPixelFormat.cpp",
-    ],
-    cflags: [
-        "-Werror",
-        "-Wall",
-        "-Wno-unused-parameter",
-        "-std=c++14",
-    ],
-    clang: true,
-    sanitize: {
-        misc_undefined: [
-            "unsigned-integer-overflow",
-            "signed-integer-overflow",
-        ],
-    },
-    ldflags: [
-        "-Wl",
-        "-Bsymbolic",
-    ],
-    shared_libs: [
-          "android.hardware.graphics.common@1.0",
-          "libv4l2_codec2_common",
-    ],
-    export_include_dirs: [
-        "include",
     ],
 }
