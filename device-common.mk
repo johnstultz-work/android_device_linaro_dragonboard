@@ -136,12 +136,10 @@ PRODUCT_PACKAGES += \
     android.hardware.media.c2@1.0-service-v4l2:64 \
     libc2plugin_store \
     libv4l2_codec2_components \
-    libv4l2_codec2_store \
     libv4l2_codec2_vendor_allocator
 
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.stagefright.c2-poolmask=0xf50000
-
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/seccomp_policy/codec2.vendor.ext.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/codec2.vendor.ext.policy
