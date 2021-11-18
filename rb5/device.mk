@@ -17,6 +17,8 @@
 # setup dalvik vm configs
 $(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
 
+include $(LOCAL_PATH)/../vendor-package-ver.mk
+
 # Enable Virtual A/B
 AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS += \
@@ -52,4 +54,4 @@ PRODUCT_VENDOR_PROPERTIES += ro.soc.model=QRB5165
 PRODUCT_PROPERTY_OVERRIDES += ro.sf.lcd_density=160
 
 # Copy firmware files
-$(call inherit-product-if-exists, $(LOCAL_PATH)/firmware/device.mk)
+$(call inherit-product-if-exists, vendor/linaro/rb5/$(EXPECTED_LINARO_VENDOR_VERSION)/device.mk)

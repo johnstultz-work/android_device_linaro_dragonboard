@@ -80,3 +80,7 @@ ifeq ($(HOST_OS),linux)
     WITH_DEXPREOPT_PIC := true
   endif
 endif
+
+# Copy firmware files to ramdisk/vendor_ramdisk to workaround
+# the dependency on FW_LOADER_USER_HELPER_FALLBACK kernel config
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
